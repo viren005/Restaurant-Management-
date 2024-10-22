@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="{% static 'admin/css/styles.css' %}">
+    <style>
+        .add-product-page{
+            width:400%;
+        }
+    </style>
+</head>
+<body>
+    <div class="">
+        <!-- Add Product Page -->
+        <div class="add-product-page">
+            <h2>Update Product</h2>
+            <form action="{% url 'updateproduct' data.id %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="product-name">Product Name:</label>
+                    <input type="text" id="product-name" name="pname" value="{{data.pname}}" required>
+                </div>
+                {% for msg in messages  %}
+                {% if 'updateerror' in msg.tags %}
+                    {{msg}}
+                {% endif %} 
+                {% endfor %}
+                <div class="form-group">
+                    <label for="product-description">Product Description:</label>
+                    <textarea id="product-description" name="pdes"   required>{{data.description}}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="product-price">Product Price:</label>
+                    <input type="number" id="product-price" name="pprice" value="{{data.price}}" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-price">Select Category:</label>
+                    <select name="category" id="category">
+                        {% for category in categorys %}
+                        <option value="{{category.id}}" {% if category.id == data.pcid_id %}selected{% endif %} >{{category.categoryname}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="product-image">Preview Image:</label>
+                    <image src="{{data.image}}" style="max-width: 200px; max-height: 200px;">
+                </div>
+                <div class="form-group">
+                    <label for="product-image">Product Image:</label>
+                    <input type="file" id="product-image" name="pimage"  />
+                </div>
+                <button type="submit">Update Product</button>
+                <a href="{% url 'listofproduct' %}">ListOfProduct</a>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

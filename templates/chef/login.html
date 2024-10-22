@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chef Login</title>
+    <link rel="stylesheet" href="{% static 'client/css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <form id="login-form" method="post" action="{% url 'cheflogin'%}"class="form">
+                {% csrf_token %}
+                <h2>Login</h2>
+                <div class="form-group">
+                    <label for="register-name">Chef Name</label>
+                    <input type="email" id="product-name" name="chefemail"  required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" name="password" required>
+                </div>
+                <button type="submit">Login</button><br><br>
+                {% for msg in messages  %}
+                {% if 'chefloginerror' in msg.tags %}
+                    {{msg}}
+                {% endif %}
+            {% endfor %}
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waiter Dashboard</title>
+    <link rel="stylesheet" href="{% static 'admin/css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+ {% include "waiter/common/header.html" %}
+ {% include "waiter/common/sidebar.html" %}
+    <div class="main-content">
+        {% for table in tables %}
+        <div class="widget" style="background-color: {% if table.isActive == 'open' %}green{% else %}red{% endif %};">
+            <h3>Table No:{{table.tableNo}}</h3>
+            <h3>Table Size:{{table.tableSize}}</h3>
+            <a href="{% url 'waitermenu' table.tableNo 'allcategory' %}">
+            <button type="submit">Add Order</button>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

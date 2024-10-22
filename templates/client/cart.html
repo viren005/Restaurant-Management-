@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+ <!-- Site Metas -->
+ <meta name="keywords" content="" />
+ <meta name="description" content="" />
+ <meta name="author" content="" />
+ <link rel="shortcut icon" href="{% static 'client/images/favicon.png' %}" type="">
+
+ <title> Feane </title>
+
+ <!-- bootstrap core css -->
+ <link rel="stylesheet" type="text/css" href="{% static 'client/css/bootstrap.css' %}" />
+
+ <!--owl slider stylesheet -->
+ <link rel="stylesheet" type="text/css" href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css' %} " />
+ <!-- nice select  -->
+ <link rel="stylesheet" href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css'%} " integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ==" crossorigin="anonymous" />
+ <!-- font awesome style -->
+ <link href="{% static 'client/css/font-awesome.min.css' %}" rel="stylesheet" />
+
+ <!-- Custom styles for this template -->
+ <link href="{% static 'client/css/style.css' %}" rel="stylesheet" />
+ <!-- responsive style -->
+ <link href="{% static 'client/css/responsive.css' %}" rel="stylesheet" />
+ <link href="{% static 'client/css/cart.css' %}" rel="stylesheet" />
+</head>
+
+<body class="sub_page">
+
+  <div class="hero_area">
+    <div class="bg-box">
+      <img src="{% static 'client/images/hero-bg.jpg' %}" alt="">
+    </div>
+    <!-- header section strats -->
+    {% include "client/common/header.html" %}
+    <!-- end header section -->
+  </div>
+<div class="cart-container">
+        <h1>Shopping Cart</h1>
+        <div class="cart-items">
+            <!-- Example of a cart item -->
+             {% if cartItems %}
+             {% for item in cartItems  %}
+            <div class="cart-item">
+                <img src="{{item.product.image}}" alt="">
+                <div class="item-details">
+                    <h2>{{item.product.pname}}</h2>
+                    <p>{{item.product.description}}</p>
+                    <div class="item-quantity">
+                        <a href="{% url 'addtocart' item.product.id 'decrement' %}"><button class="quantity-btn">-</button></a>
+                        <input type="text" value="{{item.quantity}}" class="quantity-input">
+                        <a href="{% url 'addtocart' item.product.id 'increment' %}"><button class="quantity-btn">+</button> </a>
+                    </div>
+                    <p class="item-price">{{item.itemTotal}}</p>
+                </div>
+                <a href="{% url 'deleteitem' item.id %}"><button class="remove-btn">Remove</button></a>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="item-details">
+            <h1>Your cart is empty. <a href="{% url 'menu' %}">Try Something</a></h1>
+            </div>
+            {% endif %}
+            <!-- End of cart item -->
+        </div>
+        {% if cartItems %}
+        <div class="cart-summary">
+            <h2>Summary</h2>
+            <p>Total Items: <span id="total-items">{{totalItems}}</span></p>
+            <p>Total Price: <span id="total-price">{{totalPrice}}</span></p>
+            <p>Delivery Charge: <span id="total-price">{% if totalPrice %}50{% else %}Free Delivery{% endif%}</span></p>
+            <p>Final Payment: <span id="total-price">{{finalPrice}}</span></p>
+            <button class="checkout-btn">Checkout</button>
+        </div>
+        {% endif %}
+    </div>
+  <!-- footer section -->
+  {% include 'client/common/footer.html' %}
+  <!-- footer section -->
+ <!-- jQery -->
+ <script src="{% static 'client/js/jquery-3.4.1.min.js' %}"></script>
+ <!-- popper js -->
+ <script src="{% static 'https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js' %}" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+ </script>
+ <!-- bootstrap js -->
+ <script src="{% static 'client/js/bootstrap.js' %}"></script>
+ <!-- owl slider -->
+ <script src="{% static 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js' %}"></script>
+ <!-- isotope js -->
+ <script src="{% static 'https://unpkg.com/isotope-layout@3.0.4/dist/isotope.pkgd.min.js' %}"></script>
+ <!-- nice select -->
+ <script src="{% static 'https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js' %}"></script>
+ <!-- custom js -->
+ <script src="{% static 'client/js/custom.js' %}"></script>
+ <!-- Google Map -->
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
+ </script>
+ <!-- End Google Map -->
+
+
+</body>
+
+</html>

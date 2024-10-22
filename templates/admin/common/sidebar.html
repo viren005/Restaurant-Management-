@@ -1,0 +1,13 @@
+<div class="sidebar">
+    <ul>
+        <li><a href="{% url 'admin' %}" class="{% if admin %}active{% endif %}">Dashboard</a></li>
+        <li><a href="#">Users</a></li>
+        <li><a href="{% url 'addcategory' %}" class="{% if addcategory %}active{% endif %}">Add-category</a></li>
+        <li><a href="{% url 'listofcategory' %}" class="{% if listofcategory %}active{% endif %}" >List of Category</a></li>
+        <li><a href="{% url 'addproduct' %}" class="{% if addproduct %}active{% endif %}">Add-Product</a></li>
+        <li><a href="{% url 'listofproduct' %}" class="{% if listofproduct %}active{% endif %}" >List of Product</a></li>
+        <li><a href="{% url 'addbanner' %}" class="{% if addbanner %}active{% endif %}" >Add-Banner</a></li>
+        <li><a href="{% url 'addmanager' %}" class="{% if addmanager %}active{% endif %}" >Add-Manager</a></li>
+        <li><a href="{% url 'listofmanager' %}" class="{% if listofmanager %}active{% endif %}" >List-Manager</a></li>
+    </ul>
+</div>

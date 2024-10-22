@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Registration</title>
+    <link rel="stylesheet" href="{% static 'client/css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <form id="register-form" class="form" action = "" method="post">
+                {% csrf_token %}
+                <h2>Register</h2>
+                <div class="form-group">
+                    <label for="register-name">Full Name</label>
+                    <input type="text" id="register-name" name="name" value="{{name}}" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-name">User Name</label>
+                    <input type="text" id="register-name" name="uname" value="{{uname}}" required>
+                </div><br>
+                {{uerror}}
+                <div class="form-group">
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" name="email" value="{{email}}" required>
+                </div><br>
+                {{error}}
+                <div class="form-group">
+                    <label for="register-phone">Phone Number</label>
+                    <input type="tel" id="register-phone" name="phone" value="{{phone}}" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-phone">City</label>
+                    <input type="tel" id="register-phone" name="city" value="{{city}}" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Password</label>
+                    <input type="password" id="register-password" name="password" required>
+                </div>
+                <button type="submit">Register</button><br><br>
+                <a href="{% url 'home'%}">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url 'login' %}">Login Here</a>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<div class="sidebar">
+    <ul>
+        <li><a href="{% url 'managerdashboard' %}" class="{% if managerdashboard %}active{% endif %}">Dashboard</a></li>
+        <li><a href="{% url 'addwaiter' %}" class="{% if addwaiter %}active{% endif %}">Add-Waiter</a></li>
+        <li><a href="{% url 'listofwaiter' %}" class="{% if listofwaiter %}active{% endif %}" >List of Waiter</a></li>
+        <li><a href="{% url 'addchef' %}" class="{% if addchef %}active{% endif %}">Add-Chef</a></li>
+        <li><a href="{% url 'listofchef' %}" class="{% if listofchef %}active{% endif %}" >List of Chef</a></li>
+        <li><a href="{% url 'addtable' %}" class="{% if addtable %}active{% endif %}" >Add-Table</a></li>
+        <li><a href="{% url 'listoftable' %}" class="{% if listoftable %}active{% endif %}" >List of Table</a></li>
+        <li><a href="{% url 'changepassword' %}" class="{% if changepassword %}active{% endif %}" >Change Password</a></li>
+    </ul>
+</div>

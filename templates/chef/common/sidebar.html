@@ -1,0 +1,7 @@
+<div class="sidebar">
+    <ul>
+        <li><a href="{% url 'neworder' %}" class="{% if neworder %}active{% endif %}">NewOrders</a></li>
+        <li><a href="{% url 'completeorder' %}" class="{% if completorders %}active{% endif %}">CompleteOrders</a></li>
+        <li><a href="{% url 'changepasswordchef' %}" class="{% if changepasswordchef %}active{% endif %}">Change-Password</a></li>
+    </ul>
+</div>
